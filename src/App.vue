@@ -1,7 +1,8 @@
 <template>
-  <div id="app">
+  <v-app id="app">
+    <link rel="stylesheet" type="image/jpg" href="/assets/favicon.jpg">
     <router-view></router-view>
-  </div>
+  </v-app>
 </template>
 
 <script>

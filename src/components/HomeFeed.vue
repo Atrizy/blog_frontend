@@ -1,31 +1,67 @@
 <template>
   <div>
-    <v-app-bar absolute dark height="75vh" class="logo" margin="0px" padding="0px">
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <div class="logo">
-        <img src="@/assets/logo.jpg" alt="xStandard site logo" />
-      </div>
-    </v-app-bar>
-    <p class="test">Test</p>
+    <page-header></page-header>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+import cookies from "vue-cookies";
+import PageHeader from "./PageHeader.vue";
+
 export default {
   name: "home-feed",
+
+  components: {
+    PageHeader,
+  },
+
+  methods: {
+    go_to_profile(user_id) {
+      this.$router.push({
+        path: "/profile",
+        query: { userId: user_id },
+      });
+    },
+    get_blog_posts() {
+      axios
+        .request({
+          url: `${process.env.VUE_APP_API_URL}/api/post`,
+          method: "GET",
+          data: {},
+        })
+        .then((response) => {
+          this.posts = response.data;
+        })
+        .catch((error) => {
+          error;
+        });
+    },
+    submit_blog_post() {
+      axios
+        .request({
+          url: `${process.env.VUE_APP_API_URL}/api/post`,
+          method: "POST",
+          data: {
+            loginToken: cookies.get("session").loginToken,
+            content: this.content,
+          },
+        })
+        .then((response) => {
+          response;
+        })
+        .catch((error) => {
+          error;
+        });
+    },
+  },
+  data() {
+    return {
+      posts: [],
+    };
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-.logo {
-  display: grid;
-  padding: 0;
-  margin: 0;
-}
-.logo,
-img {
-  height: 7.5vh;
-  align-content: center;
-  justify-content: center;
-}
 </style>

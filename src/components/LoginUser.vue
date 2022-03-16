@@ -1,24 +1,14 @@
 <template>
   <div class="login" ref="login">
-    <div class="header">
-      <img src="@/assets/logo.jpg" alt="xStandard site logo" />
-    </div>
+    <page-header></page-header>
     <v-content class="login_info">
       <v-card width="500px">
         <v-text-field label="Email..." v-model="email"></v-text-field>
-        <!-- <v-text-field
-        label="Username.."
-        v-model="username">
-        </v-text-field>         -->
         <v-text-field
           label="Password..."
           type="password"
           v-model="password"
         ></v-text-field>
-        <!-- <v-text-field 
-          label="DOB (FORMAT: 2001-01-01)"
-          v-model="dob">
-        </v-text-field> -->
       </v-card>
       <v-card>
         <v-btn class="buttons" color="primary" width="5vw" @click="loginUser"
@@ -35,7 +25,9 @@
 <script>
 import axios from "axios";
 import cookies from "vue-cookies";
+import PageHeader from './PageHeader.vue';
 export default {
+  components: { PageHeader },
   name: "login-user",
 
   methods: {
@@ -61,7 +53,6 @@ export default {
         });
     },
   },
-
   data() {
     return {
       email: "",
@@ -73,25 +64,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.header {
-  display: grid;
-  padding: 0;
-  margin: 0;
-  height: 7.5vh;
-  background-color: black;
-}
-
-.header img {
-  height: 7.5vh;
-  align-items: center;
-  place-self: center;
-}
-
 .login_info {
   display: grid;
   grid-template-rows: auto;
 
-  padding-top: 25vh;
+  margin-top: 25vh;
   align-items: center;
   justify-items: center;
 }

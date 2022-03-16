@@ -1,8 +1,6 @@
 <template>
-  <div class="login" ref="login">
-    <div class="header">
-      <img src="@/assets/logo.jpg" alt="xStandard site logo" />
-    </div>
+  <div>
+    <page-header></page-header>
     <v-content class="register_info">
       <v-card width="500px">
         <v-text-field label="Email..." v-model="email"></v-text-field>
@@ -36,9 +34,14 @@
 <script>
 import axios from "axios";
 import cookies from "vue-cookies";
+import PageHeader from './PageHeader.vue';
 
 export default {
   name: "register-page",
+
+  components: {
+    PageHeader
+  },
 
   methods: {
   createUser: function () {
@@ -70,20 +73,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.header {
-  display: grid;
-  padding: 0;
-  margin: 0;
-  height: 7.5vh;
-  background-color: black;
-}
-
-.header img {
-  height: 7.5vh;
-  align-items: center;
-  place-self: center;
-}
-
 .register_info {
   display: grid;
   grid-template-rows: auto;
