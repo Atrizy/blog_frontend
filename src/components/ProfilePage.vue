@@ -1,18 +1,26 @@
 <template>
   <div>
-    <div
-      class="user_profile"
+    <v-card
+      class="profile"
+      max-width="100%"
       v-if="user != undefined"
+      tile
+      flat
+      relative
     >
-      <img :src="user.profile_banner" alt="" />
-      <img :src="user.pfp" alt="" />
-      <h3>{{ user.username }}</h3>
-      <p>{{ user.bio }}</p>
-      <h4>{{ user.dob }}</h4>
-    </div>
-    <div>
-      <v-btn class="button" @click="get_profile_info">Load profile</v-btn>
-    </div>
+      <v-img height="200" :src="user.profile_banner"></v-img>
+      <v-row style="margin: 2.5%; top: 130px">
+        <v-list-item>
+          <v-list-item-avatar size="100" outline>
+            <img :src="user.pfp" alt="John" />
+          </v-list-item-avatar>
+          <v-list-item-content>
+            <v-list-item-title class="title" style="margin-top: 20px">{{ user.username }}</v-list-item-title>
+            <p>{{ user.bio }}</p>
+          </v-list-item-content>
+        </v-list-item>
+      </v-row>
+    </v-card>
   </div>
 </template>
 
@@ -26,32 +34,30 @@ export default {
   data() {
     return {
       user: undefined,
-    }
+    };
   },
 
-  methods: {
-    get_profile_info() {
-      if (!this.$route.query.id) {
-        this.$route.query.login_token = cookies.get("session");
-      }
-      axios
-        .request({
-          url: `${process.env.VUE_APP_API_URL}/api/user`,
-          method: "GET",
-          params: {
-            login_token: cookies.get("session"),
-          },
-        })
-        .then((response) => {
-          this.user = response.data;
-        })
-        .catch((error) => {
-          error;
-        });
-    },
+  mounted() {
+    axios
+      .request({
+        url: `${process.env.VUE_APP_API_URL}/api/user`,
+        method: "GET",
+        params: {
+          login_token: cookies.get("session"),
+        },
+      })
+      .then((response) => {
+        this.user = response.data;
+      })
+      .catch((error) => {
+        error;
+      });
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
+.button {
+  margin-top: 10%;
+}
 </style>

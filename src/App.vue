@@ -1,5 +1,5 @@
-<template>
-  <v-app id="app">
+<template dark>
+  <v-app id="app" color="primary">
     <link rel="stylesheet" type="image/jpg" href="/assets/favicon.jpg">
     <router-view></router-view>
   </v-app>

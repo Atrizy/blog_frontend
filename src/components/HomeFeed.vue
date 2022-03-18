@@ -1,12 +1,24 @@
 <template>
   <div>
     <page-header></page-header>
+  <div class="blog_postings">
+    <v-card width="30%" v-for="post in posts" :key="post[5]" @click="goto_blog(post[5])" flat>
+      <v-row>
+        <v-card-title class="title">{{ post[2] }}</v-card-title>
+          <v-list-item>  
+            <v-list-item-avatar size="50" absolute>
+              <v-img :src="post[1]" alt="Bloggers Profile Picture" style="cursor: pointer" @click="go_to_profile(post[0])"/>
+            </v-list-item-avatar>
+            <v-img :src="post[6]" class="blog_pic" round/>
+          </v-list-item>
+        </v-row>
+      </v-card>
+    </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import cookies from "vue-cookies";
 import PageHeader from "./PageHeader.vue";
 
 export default {
@@ -17,44 +29,35 @@ export default {
   },
 
   methods: {
-    go_to_profile(user_id) {
+    go_to_profile(username) {
       this.$router.push({
         path: "/profile",
-        query: { userId: user_id },
+        query: { username: username },
       });
     },
-    get_blog_posts() {
-      axios
-        .request({
-          url: `${process.env.VUE_APP_API_URL}/api/post`,
-          method: "GET",
-          data: {},
-        })
-        .then((response) => {
-          this.posts = response.data;
-        })
-        .catch((error) => {
-          error;
-        });
-    },
-    submit_blog_post() {
-      axios
-        .request({
-          url: `${process.env.VUE_APP_API_URL}/api/post`,
-          method: "POST",
-          data: {
-            loginToken: cookies.get("session").loginToken,
-            content: this.content,
-          },
-        })
-        .then((response) => {
-          response;
-        })
-        .catch((error) => {
-          error;
-        });
+
+    goto_blog(id) {
+      this.$router.push({
+        path: "/blog",
+        query: { blog_id: id },
+      });
     },
   },
+
+  mounted() {
+    axios
+      .request({
+        url: `${process.env.VUE_APP_API_URL}/api/post`,
+        method: "GET",
+      })
+      .then((response) => {
+        this.posts = response.data;
+      })
+      .catch((error) => {
+        error;
+      });
+  },
+
   data() {
     return {
       posts: [],
@@ -64,4 +67,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.blog_postings {
+  display: grid;
+  margin-top: 70px;
+}
+.blog_pic {
+  width: 250px;
+  height: 250px;
+}
 </style>
