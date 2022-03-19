@@ -5,8 +5,8 @@
       <h1>Blog Postings</h1>
     </div>
     <div class="blog_posts">
-      <v-card class="card" color="grey" dark max-width="400" v-for="post in posts" :key="post[5]" flat>
-        <v-card-title>
+      <v-card color="grey" dark v-for="post in posts" :key="post[5]" flat>
+        <v-card-title height="50px">
           <span class="text-h6 font-weight-light">{{ post[2] }}</span>
         </v-card-title>
         <v-img :src="post[6]" class="blog_pic" @click="goto_blog(post[5])" style="cursor: pointer"/>
@@ -76,19 +76,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.blog_posts_heading {
+.v-card-title {
+  height: 50px;
+}
+.blog_posts_header {
   margin-left: 50%;
 }
 .blog_posts {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 0.25fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));  
+  gap: 15px;
+  padding: 10px;
+
 }
 .blog_pic {
   width: 100%;
   height: 250px;
-}
-.card {
-  margin-top: 1vw;
-  margin-left: 1vw;
 }
 </style>

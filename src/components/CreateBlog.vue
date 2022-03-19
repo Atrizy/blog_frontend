@@ -1,13 +1,11 @@
 <template>
   <div class="blog_creation">
-      <v-card >
-        <v-col>
-          <v-text-field label="Header..." v-model="header" outlined counter="100"></v-text-field>
-          <v-text-field label="Blog Picture..." v-model="blog_pic" outlined counter="300" hint="Required."></v-text-field>
-          <v-text-field label="Content..." v-model="content" outlined></v-text-field>
-        </v-col>
-        <v-btn @click="create_blog_post" color="blue">Post</v-btn>
-      </v-card>
+    <v-card flat>
+      <v-text-field :rules="headerRules" label="Header..." v-model="header" outlined counter="100"></v-text-field>
+      <v-text-field :rules="blogpicRules" label="Blog Picture..." v-model="blog_pic" outlined counter="300" hint="Required."></v-text-field>
+      <v-textarea label="Content..." v-model="content" outlined></v-textarea>
+      <v-btn @click="create_blog_post" class="btn" color="blue">Post</v-btn>
+    </v-card>
   </div>
 </template>
 
@@ -28,7 +26,7 @@ export default {
             login_token: cookies.get("session"),
             header: this.header,
             blog_pic: this.blog_pic,
-            content: this.content
+            content: this.content,
           },
         })
         .then((res) => {
@@ -41,14 +39,27 @@ export default {
         });
     },
   },
+
+  data() {
+    return {
+      headerRules: [(v) => v.length <= 100 || "Max 100 characters"],
+      blogpicRules: [(v) => v.length <= 300 || "Max 300 characters"],
+    };
+  },
 };
 </script>
 
 <style lang="scss" scoped>
+.v-card {
+  margin-top: 15px;
+  width: 50%;
+}
 .blog_creation {
   display: grid;
-  grid-auto-columns: 1fr;
   place-items: center;
   width: 100%;
+}
+.v-btn {
+  justify-self: end;
 }
 </style>
