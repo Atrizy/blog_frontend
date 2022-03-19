@@ -1,12 +1,26 @@
 <template>
-  <div></div>
+  <div>
+    <v-card class="blog_post" flat>
+      <v-card-title>
+        <h1>{{ post[2] }}</h1>
+      </v-card-title>
+      <p class="blog_text">{{ post[3] }}</p>
+    </v-card>
+    <page-footer></page-footer>
+  </div>
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
+import PageFooter from '@/components/PageFooter.vue'
+
 
 export default {
   name: "blog-page",
+
+  components: {
+    PageFooter,
+  },
 
   data() {
     return {
@@ -24,7 +38,7 @@ export default {
         },
       })
       .then((response) => {
-        this.posts = response.data;
+        this.post = response.data;
       })
       .catch((error) => {
         error;
@@ -34,4 +48,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.blog_post {
+  width: 60%;
+  margin-left: 2%;
+  margin-top: 2%;
+}
+.blog_text {
+  font-size: 24px;
+  margin-top: 1%;
+}
 </style>

@@ -1,17 +1,26 @@
 <template>
   <div>
     <page-header></page-header>
-  <div class="blog_postings">
-    <v-card width="30%" v-for="post in posts" :key="post[5]" @click="goto_blog(post[5])" flat>
-      <v-row>
-        <v-card-title class="title">{{ post[2] }}</v-card-title>
-          <v-list-item>  
-            <v-list-item-avatar size="50" absolute>
-              <v-img :src="post[1]" alt="Bloggers Profile Picture" style="cursor: pointer" @click="go_to_profile(post[0])"/>
+    <div class="blog_posts_headers">
+      <h1>Blog Postings</h1>
+    </div>
+    <div class="blog_posts">
+      <v-card class="card" color="grey" dark max-width="400" v-for="post in posts" :key="post[5]" flat>
+        <v-card-title>
+          <span class="text-h6 font-weight-light">{{ post[2] }}</span>
+        </v-card-title>
+        <v-img :src="post[6]" class="blog_pic" @click="goto_blog(post[5])" style="cursor: pointer"/>
+        <v-card-actions>
+          <v-list-item class="grow">
+            <v-list-item-avatar color="grey darken-3">
+              <v-img class="elevation-6" alt="" :src="post[1]" style="cursor: pointer" @click="go_to_profile(post[0])"/>
             </v-list-item-avatar>
-            <v-img :src="post[6]" class="blog_pic" round/>
+            <v-list-item-content>
+              <v-list-item-title @click="goto_blog(post[4])" dark>{{ post[0] }}</v-list-item-title>
+            </v-list-item-content>
+            <v-list-item-content>{{ post[4] }}</v-list-item-content>
           </v-list-item>
-        </v-row>
+        </v-card-actions>
       </v-card>
     </div>
   </div>
@@ -67,12 +76,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.blog_postings {
+.blog_posts_heading {
+  margin-left: 50%;
+}
+.blog_posts {
   display: grid;
-  margin-top: 70px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 0.25fr));
 }
 .blog_pic {
-  width: 250px;
+  width: 100%;
   height: 250px;
+}
+.card {
+  margin-top: 1vw;
+  margin-left: 1vw;
 }
 </style>

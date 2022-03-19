@@ -3,6 +3,7 @@
     <page-header></page-header>
     <profile-page></profile-page>
     <bloggers-posts></bloggers-posts>
+    <page-footer></page-footer>
   </div>
 </template>
 
@@ -10,6 +11,7 @@
 import BloggersPosts from '@/components/BloggersPosts.vue';
 import PageHeader from "../components/PageHeader.vue";
 import ProfilePage from "../components/ProfilePage.vue";
+import PageFooter from '@/components/PageFooter.vue';
 
 export default {
   name: "UserProfile",
@@ -18,6 +20,7 @@ export default {
     ProfilePage,
     PageHeader,
     BloggersPosts,
+    PageFooter,
   },
 };
 </script>
