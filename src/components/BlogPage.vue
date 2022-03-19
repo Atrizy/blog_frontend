@@ -1,26 +1,23 @@
 <template>
-  <div>
-    <v-card class="blog_post" flat>
+  <div class="blog_info">
+    <v-card class="blog_post" tile flat relative>
       <v-card-title>
-        <h1>{{ post[2] }}</h1>
+        <h1 class="header">{{ post[3] }}</h1>
       </v-card-title>
-      <p class="blog_text">{{ post[3] }}</p>
+      <p class="blog_text">{{ post[4] }}</p>
+      <v-list-item-avatar size="50">
+        <v-img :src="post[1]" />
+      </v-list-item-avatar>
+      <v-list-item-content>Written by: "{{ post[0] }}"</v-list-item-content>
     </v-card>
-    <page-footer></page-footer>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import PageFooter from '@/components/PageFooter.vue'
-
 
 export default {
   name: "blog-page",
-
-  components: {
-    PageFooter,
-  },
 
   data() {
     return {
@@ -48,6 +45,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.header {
+  justify-self: start;
+  word-break: normal;
+}
+.blog_info {
+  display: grid;
+}
 .blog_post {
   width: 60%;
   margin-left: 2%;
@@ -56,5 +60,8 @@ export default {
 .blog_text {
   font-size: 24px;
   margin-top: 1%;
+}
+.blogger_panel {
+  margin-left: 2%;
 }
 </style>

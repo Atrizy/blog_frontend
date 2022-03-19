@@ -8,7 +8,7 @@
       flat
       relative
     >
-      <v-img height="200" :src="user.profile_banner"></v-img>
+      <v-img height="300" :src="user.profile_banner"></v-img>
       <v-row style="margin: 2.5%; top: 130px">
         <v-list-item>
           <v-list-item-avatar size="100" outline>
