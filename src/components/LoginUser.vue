@@ -4,19 +4,12 @@
     <v-content class="login_info">
       <v-card width="500px">
         <v-text-field label="Email..." v-model="email"></v-text-field>
-        <v-text-field
-          label="Password..."
-          type="password"
-          v-model="password"
-        ></v-text-field>
+        <v-text-field label="Password..." type="password" v-model="password">
+        </v-text-field>
       </v-card>
       <v-card>
-        <v-btn class="buttons" color="primary" width="5vw" @click="loginUser"
-          >Login</v-btn
-        >
-        <v-btn class="buttons" color="secondary" width="7vw" to="/register"
-          >Register</v-btn
-        >
+        <v-btn class="buttons" color="primary" width="5vw" @click="loginUser">Login</v-btn>
+        <v-btn class="buttons" color="secondary" width="7vw" to="/register">Register</v-btn>
       </v-card>
     </v-content>
   </div>

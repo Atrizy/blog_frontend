@@ -3,9 +3,10 @@ import VueRouter from 'vue-router'
 import LoginPage from '@/views/LoginPage.vue'
 import Register from '@/views/Register.vue'
 import Home from '@/views/Home.vue'
-import CreateBlog from '@/views/CreatingBlog.vue'
+import CreatingBlog from '@/views/CreatingBlog.vue'
 import UserProfile from '@/views/UserProfile.vue'
 import BloggingPage from '@/views/BloggingPage.vue'
+import ApplyPage from '@/views/ApplyPage.vue'
 
 Vue.use(VueRouter)
 
@@ -33,12 +34,17 @@ const routes = [
   {
     path: "/create",
     name: "create",
-    Component: CreateBlog
+    component: CreatingBlog
   },
   {
     path: "/blog",
     name: "blog",
     component: BloggingPage
+  },
+  {
+    path: "/apply",
+    name: "apply",
+    component: ApplyPage
   }
 ]
 

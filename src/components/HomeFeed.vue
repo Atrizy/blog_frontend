@@ -16,7 +16,7 @@
               <v-img class="elevation-6" alt="" :src="post[1]" style="cursor: pointer" @click="go_to_profile(post[0])"/>
             </v-list-item-avatar>
             <v-list-item-content>
-              <v-list-item-title @click="goto_blog(post[4])" dark>{{ post[0] }}</v-list-item-title>
+              <v-list-item-title dark>{{ post[0] }}</v-list-item-title>
             </v-list-item-content>
             <v-list-item-content>{{ post[4] }}</v-list-item-content>
           </v-list-item>

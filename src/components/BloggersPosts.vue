@@ -1,6 +1,7 @@
 <template>
   <v-app>
     <page-header></page-header>
+    <div class="blog_posts">
     <v-card class="card" color="grey" dark max-width="400" v-for="post in posts" :key="post[5]" flat>
       <v-card-title>
         <span class="text-h6 font-weight-light">{{ post[2] }}</span>
@@ -20,6 +21,7 @@
         </v-list-item>
       </v-card-actions>
     </v-card>
+    </div>
   </v-app>
 </template>
 
@@ -62,6 +64,10 @@ export default {
 .blog_pic {
   width: 100%;
   height: 250px;
+}
+.blog_posts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 0.25fr));
 }
 .card {
   margin-top: 10px;
