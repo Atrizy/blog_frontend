@@ -1,9 +1,9 @@
 <template>
   <div class="blog_creation">
     <v-card flat>
-      <v-text-field :rules="headerRules" label="Header..." v-model="header" outlined counter="100"></v-text-field>
+      <v-text-field :rules="headerRules" label="Header..." v-model="header" outlined counter="100" hint="Required."></v-text-field>
       <v-text-field :rules="blogpicRules" label="Blog Picture..." v-model="blog_pic" outlined counter="300" hint="Required."></v-text-field>
-      <v-textarea label="Content..." v-model="content" outlined></v-textarea>
+      <v-textarea label="Content..." v-model="content" outlined hint="Required."></v-textarea>
       <v-btn @click="create_blog_post" class="btn" color="blue">Post</v-btn>
     </v-card>
   </div>

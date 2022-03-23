@@ -1,6 +1,6 @@
 <template>
   <v-app id="inspire">
-    <v-footer color="black" absolute>
+    <v-footer color="black" absolute height="108px">
       <v-row justify="center">
         <v-btn color="white" text rounded class="my-2" @click="redirect_to_home">
           Home

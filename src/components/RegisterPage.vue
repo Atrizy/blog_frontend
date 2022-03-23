@@ -24,7 +24,7 @@
         color="blue" 
         width="12vw" 
         @click="createUser"
-          >Complete Registration</v-btn
+          >Register</v-btn
         >
       </v-card>
     </v-content>

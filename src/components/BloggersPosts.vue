@@ -2,8 +2,8 @@
   <v-app>
     <page-header></page-header>
     <div class="blog_posts">
-    <v-card class="card" color="grey" dark max-width="400" v-for="post in posts" :key="post[5]" flat>
-      <v-card-title>
+    <v-card class="card" color="grey" dark v-for="post in posts" :key="post[5]" flat>
+      <v-card-title style="height: 50px;">
         <span class="text-h6 font-weight-light">{{ post[2] }}</span>
       </v-card-title>
       <v-hover>
@@ -17,7 +17,7 @@
           <v-list-item-content>
             <v-list-item-title @click="goto_blog(post[5])" dark>{{ post[0] }}</v-list-item-title>
           </v-list-item-content>
-          <v-list-item-content>{{ post[4] }}</v-list-item-content>
+          <v-list-item-content>Created At: {{ post[4] }}</v-list-item-content>
         </v-list-item>
       </v-card-actions>
     </v-card>
@@ -37,6 +37,13 @@ export default {
       posts: [],
     };
   },
+
+    goto_blog(id) {
+      this.$router.push({
+        path: "/blog",
+        query: { blog_id: id },
+      });
+    },
 
   mounted() {
     axios
@@ -58,19 +65,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.blog_postings {
-  margin-top: 70px;
+.v-card-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.blog_posts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));  
+  gap: 15px;
+  padding: 10px;
+
 }
 .blog_pic {
   width: 100%;
   height: 250px;
-}
-.blog_posts {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 0.25fr));
-}
-.card {
-  margin-top: 10px;
-  margin-left: 10px;
 }
 </style>

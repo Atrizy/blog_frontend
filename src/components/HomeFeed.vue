@@ -6,7 +6,7 @@
     </div>
     <div class="blog_posts">
       <v-card color="grey" dark v-for="post in posts" :key="post[5]" flat>
-        <v-card-title height="50px">
+        <v-card-title style="height: 50px;">
           <span class="text-h6 font-weight-light">{{ post[2] }}</span>
         </v-card-title>
         <v-img :src="post[6]" class="blog_pic" @click="goto_blog(post[5])" style="cursor: pointer"/>
@@ -18,7 +18,7 @@
             <v-list-item-content>
               <v-list-item-title dark>{{ post[0] }}</v-list-item-title>
             </v-list-item-content>
-            <v-list-item-content>{{ post[4] }}</v-list-item-content>
+            <v-list-item-content>Created At: {{ post[4] }}</v-list-item-content>
           </v-list-item>
         </v-card-actions>
       </v-card>
@@ -76,11 +76,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.v-card-title {
-  height: 50px;
-}
-.blog_posts_header {
-  margin-left: 50%;
+h1 {
+  text-align: center;
 }
 .blog_posts {
   display: grid;

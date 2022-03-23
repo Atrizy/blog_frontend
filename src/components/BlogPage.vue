@@ -4,17 +4,21 @@
       <v-card-title>
         <h1 class="header">{{ post[3] }}</h1>
       </v-card-title>
-      <p class="blog_text">{{ post[4] }}</p>
+      <p>{{ post[4] }}</p>
       <v-list-item-avatar size="50">
         <v-img :src="post[1]" />
       </v-list-item-avatar>
       <v-list-item-content>Written by: "{{ post[0] }}"</v-list-item-content>
+      <v-btn text icon color="blue lighten-2" @click="like_post">
+        <v-icon>mdi-thumb-up</v-icon>
+      </v-btn>
     </v-card>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import cookies from "vue-cookies";
 
 export default {
   name: "blog-page",
@@ -25,13 +29,33 @@ export default {
     };
   },
 
+  methods: {
+    like_post() {
+      axios
+        .request({
+          url: `${process.env.VUE_APP_API_URL}/api/blog_likes`,
+          method: "POST",
+          data: {
+            login_token: cookies.get('session'),
+            blog_id: this.post[6]
+          },
+        })
+        .then((response) => {
+          this.post = response.data;
+        })
+        .catch((error) => {
+          error;
+        });
+    },
+  },
+
   mounted() {
     axios
       .request({
         url: `${process.env.VUE_APP_API_URL}/api/single_post`,
         method: "GET",
         params: {
-          username: this.$route.query.username,
+          blog_id: this.$route.query.blog_id,
         },
       })
       .then((response) => {
@@ -46,22 +70,21 @@ export default {
 
 <style lang="scss" scoped>
 .header {
-  justify-self: start;
   word-break: normal;
 }
 .blog_info {
   display: grid;
 }
 .blog_post {
-  width: 60%;
-  margin-left: 2%;
-  margin-top: 2%;
+  width: 70%;
+  align-content: center;
+  justify-self: center;
 }
-.blog_text {
+p {
+  margin-left: 2%;
+  align-content: center;
+  justify-self: center;
   font-size: 24px;
-  margin-top: 1%;
-}
-.blogger_panel {
-  margin-left: 2%;
+  width: 90%;
 }
 </style>
